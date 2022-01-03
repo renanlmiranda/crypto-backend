@@ -4,8 +4,11 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon --watch './src/*.ts' --exec 'ts-node' src/index.ts",
+    "start": "nodemon --watch 'src/' --exec 'ts-node' src/index.ts",
+    "compile": "tsc",
+    "build": "npm run compile",
     "prepare": "husky install",
+    "service": "node ./dist/index.js",
     "commit": "git-cz"
   },
   "repository": {
@@ -20,12 +23,24 @@
   },
   "homepage": "https://github.com/renanlmiranda/crypto-backend#readme",
   "dependencies": {
-    "koa": "^2.13.4"
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "coingecko-api": "^1.0.10",
+    "kcors": "^2.2.2",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-multer": "^1.0.2",
+    "koa-router": "^10.1.1",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.9.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
+    "@types/coingecko-api": "^1.0.9",
     "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.5",
+    "@types/koa-router": "^7.4.4",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "commitizen": "^4.2.4",
