@@ -9,7 +9,14 @@ export const listAll = async (query: QueryParamsClass) => {
   return data;
 };
 
-export const listOne = async () => {
-  const data = 0;
+export const listOne = async (id: string) => {
+  const coinId = id;
+  const params = {
+    tickers: false,
+    community_data: false,
+    localization: false,
+    developer_data: false,
+  };
+  const data = await CoinGeckoClient.coins.fetch(coinId, params);
   return data;
 };

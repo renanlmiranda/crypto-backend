@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { createKoaServer } from 'routing-controllers';
 import path from 'path';
 import 'reflect-metadata';
+
+require('dotenv').config();
 
 const app = createKoaServer({
   cors: true,
