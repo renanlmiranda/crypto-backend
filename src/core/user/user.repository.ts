@@ -11,17 +11,25 @@ export const createUser = async ({
   password,
   name,
   last_name,
+  email,
 }): Promise<iCreatedUser> => {
   const passwordHash = await userService.createHash(password);
   const data = {
     password: passwordHash,
     name,
     last_name,
+    email,
   };
 
   const user = await prisma.user.create({
     data,
   });
 
+  return user;
+};
+
+export const findByEmail = async email => {
+  const where = { email };
+  const user = await prisma.user.findUnique({ where });
   return user;
 };

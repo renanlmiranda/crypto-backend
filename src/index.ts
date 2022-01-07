@@ -7,6 +7,7 @@ require('dotenv').config();
 
 const app = createKoaServer({
   cors: true,
+  middlewares: [path.join(`${__dirname}/src/middleware/*.ts`)],
   controllers: [path.join(`${__dirname}/**/*.controller.ts`)],
 });
 
