@@ -10,7 +10,7 @@ const app = createKoaServer({
   controllers: [path.join(`${__dirname}/**/*.controller.ts`)],
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   // eslint-disable-next-line no-console
   console.log('Koa started');
 });
