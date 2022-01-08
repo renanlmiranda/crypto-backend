@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-import { Controller, Post, Body } from 'routing-controllers';
+import { Controller, Post, Body, Authorized } from 'routing-controllers';
 import { login } from './login.repository';
 import { iLoginBody } from './login.types';
 
