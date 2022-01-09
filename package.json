@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon --watch 'src/' --exec 'ts-node' src/index.ts",
+    "start": "nodemon --watch --inspect 'src/' --exec 'ts-node' src/index.ts",
     "dev": "ts-node-dev --respawn --inspect=8181  --transpile-only src/index.ts",
     "dev:server": "ts-node src/index.ts",
     "compile": "tsc",
@@ -46,7 +46,6 @@
     "@commitlint/config-conventional": "^16.0.0",
     "@types/bcrypt": "^5.0.0",
     "@types/coingecko-api": "^1.0.9",
-    "@types/jsonwebtoken": "^8.5.6",
     "@types/koa": "^2.13.4",
     "@types/koa-bodyparser": "^4.3.5",
     "@types/koa-router": "^7.4.4",
