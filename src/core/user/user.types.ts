@@ -9,10 +9,18 @@ export interface iBodyCreateUser {
 
 export interface iCreatedUser {
   id: number;
+  name: string;
   last_name: string;
   password: string;
   email: string;
   status: string;
   role: string;
   created_at: Date;
+}
+
+export interface iUpdateUser {
+  name: string;
+  last_name: string;
+  password: string;
+  email: string;
 }

@@ -10,9 +10,8 @@ export default {
     return compareHash;
   },
 
-  generateToken: async id => {
-    const exp = Math.floor(Date.now() / 1000) + envs.jwtTimeOut;
-    const token = sign({ id, exp }, envs.jwtSecret);
+  generateToken: async (id: number) => {
+    const token = sign({ id }, envs.jwtSecret, { expiresIn: envs.jwtTimeOut });
 
     return token;
   },

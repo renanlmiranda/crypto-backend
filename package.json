@@ -12,7 +12,8 @@
     "prepare": "husky install",
     "service": "node ./dist/index.js",
     "commit": "git-cz",
-    "prisma:migrate": "npx prisma migrate dev --name init"
+    "prisma:migrate": "npx prisma migrate dev --name init",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
