@@ -43,6 +43,31 @@ export const UserRepository = {
     return updateUser;
   },
 
+  updatePassword: async (id, body): Promise<any> => {
+    const { oldPassword, password } = body;
+
+    const userExists = await prisma.user.findUnique({ where: { id } });
+
+    if (!userExists) {
+      throw new BadRequestError('User not exists');
+    }
+
+    const comparePassword = await loginService.compareHash(
+      oldPassword,
+      userExists.password,
+    );
+
+    if (!comparePassword) {
+      throw new BadRequestError('Wrong password');
+    }
+
+    const createHash = await userService.createHash(password);
+
+    await prisma.user.update({ where: { id }, data: { password: createHash } });
+
+    return true;
+  },
+
   findByEmail: async email => {
     const where = { email };
     const user = await prisma.user.findUnique({ where });

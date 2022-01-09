@@ -24,3 +24,8 @@ export interface iUpdateUser {
   password: string;
   email: string;
 }
+
+export interface iUpdatePasswordUser {
+  oldPassword: string;
+  password: string;
+}

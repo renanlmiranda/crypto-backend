@@ -8,7 +8,11 @@ import {
   Put,
 } from 'routing-controllers';
 import { UserRepository } from './user.repository';
-import { iBodyCreateUser, iUpdateUser } from './user.types';
+import {
+  iBodyCreateUser,
+  iUpdatePasswordUser,
+  iUpdateUser,
+} from './user.types';
 
 @Controller('/users')
 export default class CryptoController {
@@ -25,6 +29,17 @@ export default class CryptoController {
     @Param('id') id: number,
   ): Promise<any> {
     const updatedUser = UserRepository.updateUser(id, body);
+
+    return updatedUser;
+  }
+
+  @Authorized()
+  @Put('/password/:id')
+  async updatePassword(
+    @Body() body: iUpdatePasswordUser,
+    @Param('id') id: number,
+  ): Promise<any> {
+    const updatedUser = UserRepository.updatePassword(id, body);
 
     return updatedUser;
   }
