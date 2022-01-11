@@ -1,5 +1,5 @@
 export interface iLoginBody {
-  username: string;
+  email: string;
   password: string;
 }
 
