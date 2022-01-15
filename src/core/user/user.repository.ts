@@ -24,7 +24,7 @@ export const UserRepository = {
       email,
     };
 
-    const user = await prisma.user.create({
+    const user = await prisma.users.create({
       data,
     });
 
@@ -32,13 +32,13 @@ export const UserRepository = {
   },
 
   updateUser: async (id, body): Promise<any> => {
-    const userExists = await prisma.user.findUnique({ where: { id } });
+    const userExists = await prisma.users.findUnique({ where: { id } });
 
     if (!userExists) {
       throw new BadRequestError('User not exists');
     }
 
-    const updateUser = await prisma.user.update({ where: { id }, data: body });
+    const updateUser = await prisma.users.update({ where: { id }, data: body });
 
     return updateUser;
   },
@@ -46,7 +46,7 @@ export const UserRepository = {
   updatePassword: async (id, body): Promise<any> => {
     const { oldPassword, password } = body;
 
-    const userExists = await prisma.user.findUnique({ where: { id } });
+    const userExists = await prisma.users.findUnique({ where: { id } });
 
     if (!userExists) {
       throw new BadRequestError('User not exists');
@@ -63,20 +63,26 @@ export const UserRepository = {
 
     const createHash = await userService.createHash(password);
 
-    await prisma.user.update({ where: { id }, data: { password: createHash } });
+    await prisma.users.update({
+      where: { id },
+      data: { password: createHash },
+    });
 
     return true;
   },
 
+  findOne: async (id: number) =>
+    prisma.users.findUnique({ where: { id }, include: { wallets: true } }),
+
   findByEmail: async email => {
     const where = { email };
-    const user = await prisma.user.findUnique({ where });
+    const user = await prisma.users.findUnique({ where });
     return user;
   },
 
   findByToken: async (token: string) => {
     const { id } = await loginService.decodeToken(token);
-    const user = await prisma.user.findUnique({ where: { id } });
+    const user = await prisma.users.findUnique({ where: { id } });
     return user;
   },
 };

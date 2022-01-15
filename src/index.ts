@@ -4,6 +4,7 @@ import path from 'path';
 import 'reflect-metadata';
 import authorizedMiddleware from './middleware/authorized.middleware';
 import currentUserMiddleware from './middleware/currentUser.middleware';
+import { envs } from './config/envs';
 
 const app = createKoaServer({
   cors: true,
@@ -13,7 +14,7 @@ const app = createKoaServer({
   currentUserChecker: currentUserMiddleware,
 });
 
-app.listen(3001, () => {
+app.listen(envs.port, () => {
   // eslint-disable-next-line no-console
   console.log('Koa started');
 });

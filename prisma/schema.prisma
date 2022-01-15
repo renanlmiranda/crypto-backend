@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id Int @id @default(autoincrement())
   name String
   last_name String
@@ -18,7 +18,21 @@ model User {
   password String
   status Status @default(ACTIVE)
   role Role @default(BASIC)
-  created_at DateTime @default(now())
+  created DateTime @default(now())
+
+  wallets Wallets[]
+  @@map("users")
+}
+
+model Wallets {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  created DateTime @default(now())
+
+  user_id Int
+  user Users @relation(fields: [user_id], references: [id])
+  @@map("wallets")
 }
 
 enum Role {

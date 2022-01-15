@@ -1,0 +1,35 @@
+Users:
+  ✔ Criação de usuários POST @done (1/10/2022, 9:51:35 PM)
+  ✔ Update de usuários PUT @done (1/10/2022, 9:51:39 PM)
+  ✔ Alteração de senha PUT @done (1/10/2022, 9:51:40 PM)
+  ✔ Get para buscar usuário com informações relevantes @done (1/14/2022, 10:50:17 PM)
+  ☐ Deletar usuário, deletando sua carteira e transações
+  ☐ Tirar informações desnecessárias das rotas que trazem informações.
+
+Login:
+  ✔ Rota de login @done (1/10/2022, 9:52:44 PM)
+
+Erros:
+  ☐ Mudar middleware de erro para não devolver stack @low
+
+Criptos:
+  Externo:
+    ✔ Listar moedas @done (1/10/2022, 9:57:57 PM)
+    ✔ Listar uma moeda @done (1/10/2022, 9:57:58 PM)
+    ☐ Listar exchanges
+
+  Interno:
+    ✔ Criação de carteira @done (1/14/2022, 10:51:13 PM)
+    ☐ Deletar carteira com as transações
+    ☐ Adicionar transação
+    ☐ Atualizar transação
+    ☐ Deletar transação
+    ☐ Listar ativos com lucro ou prejuizo total
+    ☐ Listar lucro ou prejuizo de cada moeda
+
+
+
+
+
+
+

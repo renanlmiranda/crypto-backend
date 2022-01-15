@@ -6,6 +6,7 @@ import {
   Authorized,
   Param,
   Put,
+  Get,
 } from 'routing-controllers';
 import { UserRepository } from './user.repository';
 import {
@@ -15,7 +16,7 @@ import {
 } from './user.types';
 
 @Controller('/users')
-export default class CryptoController {
+export default class UserController {
   @Post('/')
   async create(@Body() body: iBodyCreateUser) {
     const data = await UserRepository.createUser(body);
@@ -42,5 +43,13 @@ export default class CryptoController {
     const updatedUser = UserRepository.updatePassword(id, body);
 
     return updatedUser;
+  }
+
+  @Authorized()
+  @Get('/:id')
+  async findOne(@Param('id') id: number): Promise<any> {
+    const user = UserRepository.findOne(id);
+
+    return user;
   }
 }

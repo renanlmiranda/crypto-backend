@@ -15,7 +15,7 @@ export interface iCreatedUser {
   email: string;
   status: string;
   role: string;
-  created_at: Date;
+  created: Date;
 }
 
 export interface iUpdateUser {
