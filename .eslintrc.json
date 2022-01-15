@@ -18,6 +18,8 @@
         "prettier"
     ],
     "rules": {
+        "no-useless-constructor": "off",
+        "@typescript-eslint/no-useless-constructor": ["error"],
         "class-methods-use-this":"off",
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": [

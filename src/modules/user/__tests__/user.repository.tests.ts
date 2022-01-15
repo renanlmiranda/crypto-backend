@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { UserRepository } from '../user.repository';
+import { UsersRepository } from '../repository/User.repository';
+
+const usersRepository = new UsersRepository();
 
 const userCreated = {
   id: 1,
@@ -17,9 +19,9 @@ const newUserBody = {
 };
 describe('test user repository', () => {
   test('test create user function', () => {
-    UserRepository.createUser = jest.fn().mockReturnValueOnce(userCreated);
+    usersRepository.create = jest.fn().mockReturnValueOnce(userCreated);
 
-    const newUser = UserRepository.createUser(newUserBody);
+    const newUser = usersRepository.create(newUserBody);
     expect(newUser).toEqual(userCreated);
   });
 });

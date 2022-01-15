@@ -8,6 +8,7 @@ import { envs } from './config/envs';
 
 const app = createKoaServer({
   cors: true,
+  defaultErrorHandler: true,
   middlewares: [path.join(`${__dirname}/src/middleware/*.ts`)],
   controllers: [path.join(`${__dirname}/**/*.controller.ts`)],
   authorizationChecker: authorizedMiddleware,
