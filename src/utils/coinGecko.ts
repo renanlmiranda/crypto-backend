@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 import CoinGecko from 'coingecko-api';
-import QueryParamsClass from '../core/crypto/crypto.types';
+import QueryParamsClass from '../modules/crypto/crypto.types';
 
 const CoinGeckoClient = new CoinGecko();
 

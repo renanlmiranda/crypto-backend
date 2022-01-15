@@ -1,8 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../../database/prisma';
 
 export const WalletRepository = {
   createWallet: async (body, user): Promise<any> => {

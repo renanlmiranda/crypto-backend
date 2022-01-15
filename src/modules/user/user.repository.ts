@@ -1,13 +1,11 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line import/prefer-default-export
-import { PrismaClient } from '@prisma/client';
 import { BadRequestError } from 'routing-controllers';
 import loginService from '../login/login.service';
 import userService from './user.service';
 import { iCreatedUser } from './user.types';
-
-const prisma = new PrismaClient();
+import { prisma } from '../../database/prisma';
 
 export const UserRepository = {
   createUser: async ({

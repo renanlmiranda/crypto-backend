@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PrismaClient } from '@prisma/client';
 import { UserRepository } from '../user.repository';
-
-const prisma = new PrismaClient();
 
 const userCreated = {
   id: 1,
