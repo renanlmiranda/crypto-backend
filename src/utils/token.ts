@@ -8,5 +8,5 @@ export default {
     return token;
   },
 
-  decodeToken: async (token: string): Promise<string> => decode(token),
+  decodeToken: async (token: string): Promise<any> => decode(token),
 };

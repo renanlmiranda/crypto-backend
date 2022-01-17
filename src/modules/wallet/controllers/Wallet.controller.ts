@@ -5,16 +5,17 @@ import {
   CurrentUser,
   Post,
 } from 'routing-controllers';
-import { createWalletBody } from './wallet.entity';
-import { WalletRepository } from './wallet.repository';
+import { createWalletBody } from '../Wallet.types';
+import { WalletRepository } from '../repository/Wallet.repository';
+
+const walletRepository = new WalletRepository();
 
 @Controller('/wallets')
 export default class WalletController {
   @Authorized()
   @Post('/')
   async create(@Body() body: createWalletBody, @CurrentUser() user) {
-    const createdWallet = await WalletRepository.createWallet(body, user);
-
+    const createdWallet = await walletRepository.create(body, user);
     return createdWallet;
   }
 }

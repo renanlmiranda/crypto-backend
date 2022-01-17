@@ -1,4 +1,4 @@
-import loginService from '../login.service';
+import loginService from '../Login.service';
 
 describe('test login service file', () => {
   test('compareHash function', () => {

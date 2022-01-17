@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line import/prefer-default-export
-import loginService from '../../login/login.service';
+import tokenService from '../../../utils/token';
 import {
   iCreateBody,
   iUsersRepository,
@@ -41,7 +41,7 @@ export class UsersRepository implements iUsersRepository {
   }
 
   async findByToken(token: string): Promise<iUserPass> {
-    const { id } = await loginService.decodeToken(token);
+    const { id } = await tokenService.decodeToken(token);
     const user = await prisma.users.findUnique({ where: { id } });
     return user;
   }
