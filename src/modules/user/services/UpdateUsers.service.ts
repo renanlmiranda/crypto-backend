@@ -15,14 +15,18 @@ export class UpdateUserService {
   ) {}
 
   async execute(id: number, body: iUpdateUser): Promise<User> {
-    const userExists = await this.usersRepository.findOne(id);
+    try {
+      const userExists = await this.usersRepository.findOne(id);
 
-    if (!userExists) {
-      throw new BadRequestError('User not exists');
+      if (!userExists) {
+        throw new BadRequestError('User not exists');
+      }
+
+      const updateUser = await this.usersRepository.update(id, body);
+
+      return updateUser;
+    } catch (error) {
+      throw new Error(error);
     }
-
-    const updateUser = await this.usersRepository.update(id, body);
-
-    return updateUser;
   }
 }

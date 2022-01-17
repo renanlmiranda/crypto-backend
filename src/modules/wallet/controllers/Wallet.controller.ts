@@ -5,7 +5,6 @@ import {
   CurrentUser,
   Post,
 } from 'routing-controllers';
-import { createWalletBody } from '../Wallet.types';
 import { WalletRepository } from '../repository/Wallet.repository';
 
 const walletRepository = new WalletRepository();
@@ -14,7 +13,7 @@ const walletRepository = new WalletRepository();
 export default class WalletController {
   @Authorized()
   @Post('/')
-  async create(@Body() body: createWalletBody, @CurrentUser() user) {
+  async create(@Body() body, @CurrentUser() user) {
     const createdWallet = await walletRepository.create(body, user);
     return createdWallet;
   }

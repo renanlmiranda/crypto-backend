@@ -13,22 +13,26 @@ export class LoginService {
   ) {}
 
   async execute(body): Promise<any> {
-    const userExists = await this.usersRepository.findByEmail(body.email);
+    try {
+      const userExists = await this.usersRepository.findByEmail(body.email);
 
-    if (!userExists) {
-      throw new BadRequestError('Login invalid!');
+      if (!userExists) {
+        throw new BadRequestError('Login invalid!');
+      }
+      const comparePassword = await crypt.compareHash(
+        body.password,
+        userExists.password,
+      );
+
+      if (!comparePassword) {
+        throw new UnauthorizedError('Invalid Credintials');
+      }
+
+      const createToken = await token.generateToken(userExists.id);
+
+      return { userExists, token: createToken };
+    } catch (error) {
+      throw new Error(error);
     }
-    const comparePassword = await crypt.compareHash(
-      body.password,
-      userExists.password,
-    );
-
-    if (!comparePassword) {
-      throw new UnauthorizedError('Invalid Credintials');
-    }
-
-    const createToken = await token.generateToken(userExists.id);
-
-    return { userExists, token: createToken };
   }
 }

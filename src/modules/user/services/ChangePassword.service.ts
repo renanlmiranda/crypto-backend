@@ -15,26 +15,30 @@ export class ChangePasswordService {
   ) {}
 
   async execute(id: number, body: iUpdatePassword): Promise<any> {
-    const { oldPassword, password } = body;
-    const userExists = await this.usersRepository.findOne(id);
+    try {
+      const { oldPassword, password } = body;
+      const userExists = await this.usersRepository.findOne(id);
 
-    if (!userExists) {
-      throw new BadRequestError('User not exists');
+      if (!userExists) {
+        throw new BadRequestError('User not exists');
+      }
+
+      const comparePassword = await crypt.compareHash(
+        oldPassword,
+        userExists.password,
+      );
+
+      if (!comparePassword) {
+        throw new BadRequestError('Wrong password');
+      }
+
+      const createHash = await crypt.createHash(password);
+      const data = { password: createHash };
+
+      const user = this.usersRepository.update(id, data);
+      return user;
+    } catch (error) {
+      throw new Error(error);
     }
-
-    const comparePassword = await crypt.compareHash(
-      oldPassword,
-      userExists.password,
-    );
-
-    if (!comparePassword) {
-      throw new BadRequestError('Wrong password');
-    }
-
-    const createHash = await crypt.createHash(password);
-    const data = { password: createHash };
-
-    const user = this.usersRepository.update(id, data);
-    return user;
   }
 }
