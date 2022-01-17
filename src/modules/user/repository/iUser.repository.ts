@@ -38,7 +38,7 @@ export interface iUpdatePassword {
   password: string;
 }
 
-export interface iUserRepository {
+export interface iUsersRepository {
   create({ name, lastName, email, password }: iCreateBody): Promise<User>;
   update(id: number, body: iUpdateUser): Promise<User>;
   findOne(id: number): Promise<User>;

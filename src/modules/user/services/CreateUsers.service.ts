@@ -1,12 +1,17 @@
 /* eslint-disable import/prefer-default-export */
-import { BadRequestError, UnauthorizedError } from 'routing-controllers';
-import { UsersRepository } from '../repository/User.repository';
+import { BadRequestError } from 'routing-controllers';
+import { injectable, inject } from 'tsyringe';
+import { iUsersRepository, User } from '../repository/iUser.repository';
 import crypt from '../../../utils/hashCrypt';
 
-export class CreateUserService {
-  constructor(private usersRepository: UsersRepository) {}
+@injectable()
+export class CreateUsersService {
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: iUsersRepository,
+  ) {}
 
-  async execute({ name, lastName, email, password }) {
+  async execute({ name, lastName, email, password }): Promise<User> {
     const emailExists = await this.usersRepository.findByEmail(email);
 
     if (emailExists) {

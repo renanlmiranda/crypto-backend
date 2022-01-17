@@ -1,31 +1,24 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line import/prefer-default-export
-import { BadRequestError } from 'routing-controllers';
 import loginService from '../../login/login.service';
 import {
   iCreateBody,
-  iUserRepository,
+  iUsersRepository,
   User,
   iUpdateUser,
   iUserPass,
 } from './iUser.repository';
 import { prisma } from '../../../database/prisma';
 
-export class UsersRepository implements iUserRepository {
-  private repository: typeof prisma.users;
-
-  constructor(repository: typeof prisma.users) {
-    this.repository = repository;
-  }
-
+export class UsersRepository implements iUsersRepository {
   async create({
     name,
     lastName,
     email,
     password,
   }: iCreateBody): Promise<User> {
-    return this.repository.create({
+    return prisma.users.create({
       data: { name, lastName, email, password },
     });
   }

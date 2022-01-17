@@ -1,10 +1,18 @@
 /* eslint-disable import/prefer-default-export */
 import { BadRequestError } from 'routing-controllers';
-import { UsersRepository } from '../repository/User.repository';
-import { iUpdateUser, User } from '../repository/iUser.repository';
+import { injectable, inject } from 'tsyringe';
+import {
+  iUpdateUser,
+  User,
+  iUsersRepository,
+} from '../repository/iUser.repository';
 
+@injectable()
 export class UpdateUserService {
-  constructor(private usersRepository: UsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: iUsersRepository,
+  ) {}
 
   async execute(id: number, body: iUpdateUser): Promise<User> {
     const userExists = await this.usersRepository.findOne(id);

@@ -1,11 +1,18 @@
 /* eslint-disable import/prefer-default-export */
 import { BadRequestError } from 'routing-controllers';
-import { UsersRepository } from '../repository/User.repository';
-import { iUpdatePassword } from '../repository/iUser.repository';
+import { injectable, inject } from 'tsyringe';
+import {
+  iUpdatePassword,
+  iUsersRepository,
+} from '../repository/iUser.repository';
 import crypt from '../../../utils/hashCrypt';
 
+@injectable()
 export class ChangePasswordService {
-  constructor(private usersRepository: UsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: iUsersRepository,
+  ) {}
 
   async execute(id: number, body: iUpdatePassword): Promise<any> {
     const { oldPassword, password } = body;

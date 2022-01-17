@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-bitwise */
 import {
   Controller,
@@ -8,34 +9,33 @@ import {
   Put,
   Get,
 } from 'routing-controllers';
-import { prisma } from '../../../database/prisma';
+import { container } from 'tsyringe';
 import { UsersRepository } from '../repository/User.repository';
 import { ChangePasswordService } from '../services/ChangePassowrd.service';
-import { CreateUserService } from '../services/CreateUser.service';
-import { UpdateUserService } from '../services/UpdateUser.service';
+import { CreateUsersService } from '../services/CreateUsers.service';
+import { UpdateUserService } from '../services/UpdateUsers.service';
 
-const usersRepository = new UsersRepository(prisma.users);
-const createUserService = new CreateUserService(usersRepository);
-const updateUserService = new UpdateUserService(usersRepository);
-const changePassword = new ChangePasswordService(usersRepository);
-
+const usersRepository = new UsersRepository();
 @Controller('/users')
-export default class UserController {
+export class UsersController {
   @Post('/')
-  async create(@Body() body) {
+  async create(@Body() body): Promise<any> {
+    const createUserService = container.resolve(CreateUsersService);
     return createUserService.execute(body);
   }
 
   @Authorized()
   @Put('/:id')
   async update(@Body() body, @Param('id') id): Promise<any> {
+    const updateUserService = container.resolve(UpdateUserService);
     return updateUserService.execute(id, body);
   }
 
   @Authorized()
   @Put('/password/:id')
   async updatePassword(@Body() body, @Param('id') id): Promise<any> {
-    return changePassword.execute(id, body);
+    const changePasswordService = container.resolve(ChangePasswordService);
+    return changePasswordService.execute(id, body);
   }
 
   @Authorized()
