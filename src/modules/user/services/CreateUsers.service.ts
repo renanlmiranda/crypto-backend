@@ -13,6 +13,10 @@ export class CreateUsersService {
 
   async execute({ name, lastName, email, password }): Promise<iCreatedUser> {
     try {
+      if (!email || !password) {
+        throw new BadRequestError('Data is not correct!');
+      }
+
       const emailExists = await this.usersRepository.findByEmail(email);
 
       if (emailExists) {

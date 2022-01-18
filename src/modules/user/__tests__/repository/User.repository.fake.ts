@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-unused-expressions */
-import { Role, Status, Users } from '@prisma/client';
+import { Users } from '@prisma/client';
 import {
   iCreateBody,
   iUpdateUser,
