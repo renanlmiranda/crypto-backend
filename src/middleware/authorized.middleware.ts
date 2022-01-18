@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
 import { Action } from 'routing-controllers';
-import { UsersRepository } from '../modules/user/repository/User.repository';
-
-const usersRepository = new UsersRepository();
+import { container } from 'tsyringe';
+import { FindByTokenService } from '../modules/user/services/FindByToken.service';
 
 export default async (action: Action, roles: string[]) => {
   try {
+    const findByTokenService = container.resolve(FindByTokenService);
     const token = action.request.headers.authorization;
-    const user = await usersRepository.findByToken(token);
+    const user = await findByTokenService.execute(token);
 
     !user && false;
 

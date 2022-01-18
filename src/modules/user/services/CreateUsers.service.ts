@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { BadRequestError } from 'routing-controllers';
 import { injectable, inject } from 'tsyringe';
-import { iUsersRepository, User } from '../repository/iUser.repository';
+import { iCreatedUser, iUsersRepository } from '../repository/iUser.repository';
 import crypt from '../../../utils/hashCrypt';
 
 @injectable()
@@ -11,7 +11,7 @@ export class CreateUsersService {
     private usersRepository: iUsersRepository,
   ) {}
 
-  async execute({ name, lastName, email, password }): Promise<User> {
+  async execute({ name, lastName, email, password }): Promise<iCreatedUser> {
     try {
       const emailExists = await this.usersRepository.findByEmail(email);
 
@@ -27,9 +27,9 @@ export class CreateUsersService {
         email,
       };
 
-      const user = await this.usersRepository.create(body);
+      await this.usersRepository.create(body);
 
-      return user;
+      return { created: true };
     } catch (error) {
       throw new Error(error);
     }
