@@ -39,10 +39,4 @@ export class UsersRepository implements iUsersRepository {
     const user = await prisma.users.findUnique({ where });
     return user;
   }
-
-  async findByToken(token: string): Promise<iUserPass> {
-    const { id } = await tokenService.decodeToken(token);
-    const user = await prisma.users.findUnique({ where: { id } });
-    return user;
-  }
 }

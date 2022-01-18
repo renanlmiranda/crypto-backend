@@ -12,6 +12,7 @@ export interface User {
   email: string;
   status: string;
   role: string;
+  deleted: Date;
   created: Date;
   password: string;
 }
@@ -23,14 +24,19 @@ export interface iUserPass {
   email: string;
   status: string;
   role: string;
+  deleted: Date;
   created: Date;
   password: string;
 }
 
+export interface iCreatedUser {
+  created: boolean;
+}
 export interface iUpdateUser {
   name?: string;
   lastName?: string;
   password?: string;
+  deleted?: Date;
 }
 
 export interface iUpdatePassword {
@@ -38,10 +44,13 @@ export interface iUpdatePassword {
   password: string;
 }
 
+export interface iReponseDeleted {
+  deleted: boolean;
+}
+
 export interface iUsersRepository {
   create({ name, lastName, email, password }: iCreateBody): Promise<User>;
   update(id: number, body: iUpdateUser): Promise<User>;
   findOne(id: number): Promise<User>;
   findByEmail(email: string): Promise<iUserPass>;
-  findByToken(token: string): Promise<iUserPass>;
 }

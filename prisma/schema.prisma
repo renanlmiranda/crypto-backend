@@ -18,6 +18,7 @@ model Users {
   password String
   status Status @default(ACTIVE)
   role Role @default(BASIC)
+  deleted DateTime?
   created DateTime @default(now())
 
   wallets Wallets[]

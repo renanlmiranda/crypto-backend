@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+import 'reflect-metadata';
 import { createKoaServer } from 'routing-controllers';
 import path from 'path';
-import 'reflect-metadata';
 import authorizedMiddleware from './middleware/authorized.middleware';
 import currentUserMiddleware from './middleware/currentUser.middleware';
 import { envs } from './config/envs';

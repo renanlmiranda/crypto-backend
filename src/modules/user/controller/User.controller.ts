@@ -8,12 +8,14 @@ import {
   Param,
   Put,
   Get,
+  Delete,
 } from 'routing-controllers';
 import { container } from 'tsyringe';
 import { UsersRepository } from '../repository/User.repository';
 import { ChangePasswordService } from '../services/ChangePassword.service';
 import { CreateUsersService } from '../services/CreateUsers.service';
 import { UpdateUserService } from '../services/UpdateUsers.service';
+import { DeleteUsersService } from '../services/DeleteUsers.service';
 
 const usersRepository = new UsersRepository();
 @Controller('/users')
@@ -42,5 +44,12 @@ export class UsersController {
   @Get('/:id')
   async findOne(@Param('id') id: number) {
     return usersRepository.findOne(id);
+  }
+
+  @Authorized()
+  @Delete('/:id')
+  async delete(@Param('id') id: number) {
+    const deleteUsersService = container.resolve(DeleteUsersService);
+    return deleteUsersService.execute(id);
   }
 }
