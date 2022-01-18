@@ -20,7 +20,7 @@ export class ChangePasswordService {
       const userExists = await this.usersRepository.findOne(id);
 
       if (!userExists) {
-        throw new BadRequestError('User not exists');
+        throw new BadRequestError('User not exists!');
       }
 
       const comparePassword = await crypt.compareHash(
@@ -29,14 +29,14 @@ export class ChangePasswordService {
       );
 
       if (!comparePassword) {
-        throw new BadRequestError('Wrong password');
+        throw new BadRequestError('Wrong password!');
       }
 
       const createHash = await crypt.createHash(password);
       const data = { password: createHash };
 
-      const user = this.usersRepository.update(id, data);
-      return user;
+      await this.usersRepository.update(id, data);
+      return { updated: true };
     } catch (error) {
       throw new Error(error);
     }

@@ -9,22 +9,22 @@ export const BODY_TO_CREATE_USER = {
 };
 
 export const MOCK_TO_CREATE_USER = {
-  name: 'Teste nome',
-  lastName: 'Teste lastName',
+  name: 'Teste',
+  lastName: 'LastName',
   email: 'teste@teste.com.br',
   password: 'senhaTeste',
 };
 
 export const MOCK_TO_CREATE_USER_WITHOUT_EMAIL = {
-  name: 'Teste nome',
-  lastName: 'Teste lastName',
+  name: 'Teste',
+  lastName: 'LastName',
   email: '',
   password: 'senhaTeste',
 };
 
 export const MOCK_TO_CREATE_USER_WITHOUT_PASSWORD = {
-  name: 'Teste nome',
-  lastName: 'Teste lastName',
+  name: 'Teste',
+  lastName: 'LastName',
   email: 'teste@teste.com.br',
   password: '',
 };
