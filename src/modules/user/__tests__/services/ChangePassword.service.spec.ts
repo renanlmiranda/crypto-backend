@@ -49,7 +49,7 @@ describe('Update password', () => {
     }
   });
 
-  it('should not be able to update password with wrong user', async () => {
+  it('should not be able to update password with wrong password', async () => {
     try {
       await createUserService.execute(MOCK_TO_CREATE_USER);
 

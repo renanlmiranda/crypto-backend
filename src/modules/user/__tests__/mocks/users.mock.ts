@@ -15,6 +15,11 @@ export const MOCK_TO_CREATE_USER = {
   password: 'senhaTeste',
 };
 
+export const MOCK_TO_UPDATE_USER = {
+  name: 'UpdateUser',
+  lastName: 'UpdateLastName',
+};
+
 export const MOCK_TO_CREATE_USER_WITHOUT_EMAIL = {
   name: 'Teste',
   lastName: 'LastName',

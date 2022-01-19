@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { BadRequestError, UnauthorizedError } from 'routing-controllers';
+import { BadRequestError } from 'routing-controllers';
 import { injectable, inject } from 'tsyringe';
 import { iUsersRepository } from '../../user/repository/iUser.repository';
 import crypt from '../../../utils/hashCrypt';
@@ -25,12 +25,12 @@ export class LoginService {
       );
 
       if (!comparePassword) {
-        throw new UnauthorizedError('Invalid Credintials');
+        throw new BadRequestError('Invalid Credintials!');
       }
 
       const createToken = await token.generateToken(userExists.id);
 
-      return { userExists, token: createToken };
+      return { user: userExists, token: createToken };
     } catch (error) {
       throw new Error(error);
     }

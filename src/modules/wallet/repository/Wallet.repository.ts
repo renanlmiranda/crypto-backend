@@ -1,11 +1,11 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { Users } from '@prisma/client';
 import { prisma } from '../../../database/prisma';
-import { User } from '../../user/repository/iUser.repository';
 import { iWalletBody, iWalletRepository } from './iWallet.repository';
 
 export class WalletRepository implements iWalletRepository {
-  async create(body: iWalletBody, user: User) {
+  async create(body: iWalletBody, user: Users) {
     return prisma.wallets.create({
       data: {
         user_id: user.id,
