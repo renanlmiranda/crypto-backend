@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Users } from '@prisma/client';
 import { prisma } from '../../../database/prisma';
+import { iDeletedReponse } from '../../../DTO/reponses.dto';
 import { iWalletBody, iWalletRepository } from './iWallet.repository';
 
 export class WalletRepository implements iWalletRepository {
@@ -22,11 +23,11 @@ export class WalletRepository implements iWalletRepository {
     return true;
   }
 
-  async delete(id: number) {
+  async delete(id: number): Promise<iDeletedReponse> {
     await prisma.wallets.delete({
       where: { id },
     });
 
-    return true;
+    return { deleted: true };
   }
 }

@@ -59,7 +59,7 @@ model Transactions {
   type Types @relation(fields: [typeId], references: [id])
 
   walletId Int @map("wallet_id")
-  wallet Wallets @relation(fields: [walletId], references: [id])
+  wallet Wallets @relation(fields: [walletId], references: [id], onDelete: Cascade)
   @@map("transactions")
 }
 

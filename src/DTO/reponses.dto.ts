@@ -3,5 +3,9 @@ export interface iCreatedResponse {
 }
 
 export interface iUpdatedResponse {
-  Updated: boolean;
+  updated: boolean;
+}
+
+export interface iDeletedReponse {
+  deleted: boolean;
 }

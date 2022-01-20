@@ -1,4 +1,5 @@
 import { Wallets } from '@prisma/client';
+import { iDeletedReponse } from '../../../DTO/reponses.dto';
 import { User } from '../../user/repository/iUser.repository';
 
 export interface iWalletBody {
@@ -8,5 +9,5 @@ export interface iWalletBody {
 export interface iWalletRepository {
   create(body: iWalletBody, user: User): Promise<Wallets>;
   deleteMany(userId: number): Promise<boolean>;
-  delete(id: number): Promise<boolean>;
+  delete(id: number): Promise<iDeletedReponse>;
 }
