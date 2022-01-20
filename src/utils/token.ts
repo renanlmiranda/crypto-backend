@@ -8,5 +8,12 @@ export default {
     return token;
   },
 
-  decodeToken: async (token: string): Promise<any> => decode(token),
+  decodeToken: async (token: string): Promise<any> => {
+    try {
+      const response = await decode(token);
+      return response;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 };

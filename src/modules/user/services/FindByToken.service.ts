@@ -13,12 +13,12 @@ export class FindByTokenService {
 
   async execute(token: string): Promise<iUserPass> {
     try {
-      const { id } = await tokenUtils.decodeToken(token);
-      const user = await this.usersRepository.findOne(id);
+      const userInfo = await tokenUtils.decodeToken(token);
 
-      if (!user) {
-        throw new BadRequestError('user not exists!');
+      if (!userInfo) {
+        throw new BadRequestError('Wrong token!');
       }
+      const user = await this.usersRepository.findOne(userInfo.id);
 
       return user;
     } catch (error) {

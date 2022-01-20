@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
 // eslint-disable-next-line import/prefer-default-export
-import tokenService from '../../../utils/token';
 import {
   iCreateBody,
   iUsersRepository,

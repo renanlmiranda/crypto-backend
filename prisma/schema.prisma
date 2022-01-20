@@ -33,7 +33,32 @@ model Wallets {
 
   user_id Int
   user Users @relation(fields: [user_id], references: [id])
+
+  transactions Transactions[]
   @@map("wallets")
+}
+
+model Types {
+  id Int @id @default(autoincrement())
+  name String
+
+  transactions Transactions[]
+  @@map("types")
+}
+
+model Transactions {
+  id Int @id @default(autoincrement())
+  name String
+  abbreviation String
+  quantity Int
+  price Decimal @db.Money
+
+  type_id Int
+  type Types @relation(fields: [type_id], references: [id])
+
+  wallet_id Int
+  wallet Wallets @relation(fields: [wallet_id], references: [id])
+  @@map("transactions")
 }
 
 enum Role {

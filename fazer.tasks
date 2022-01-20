@@ -3,7 +3,7 @@ Users:
   ✔ Update de usuários PUT @done (1/10/2022, 9:51:39 PM)
   ✔ Alteração de senha PUT @done (1/10/2022, 9:51:40 PM)
   ✔ Get para buscar usuário com informações relevantes @done (1/14/2022, 10:50:17 PM)
-  ☐ Deletar usuário lógicamente, deletando sua carteira e transações
+  ✔ Deletar usuário lógicamente, deletando sua carteira e transações @done (1/19/2022, 1:05:10 AM)
   ☐ Tirar informações desnecessárias das rotas que trazem informações.
 
 Login:
@@ -21,6 +21,7 @@ Criptos:
   Wallet:
     ✔ Criação de carteira @done (1/14/2022, 10:51:13 PM)
     ☐ Deletar carteira com as transações
+    ☐ Criar schema de transações
     ☐ Adicionar transação
     ☐ Atualizar transação
     ☐ Deletar transação
