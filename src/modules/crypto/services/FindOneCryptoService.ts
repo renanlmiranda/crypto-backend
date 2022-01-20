@@ -3,7 +3,7 @@ import { injectable, inject } from 'tsyringe';
 import { iCryptoRepository } from '../repository/iCrypto.repository';
 
 @injectable()
-export class FindOneService {
+export class FindOneCryptoService {
   constructor(
     @inject('CryptoRepository')
     private cryptoRepository: iCryptoRepository,

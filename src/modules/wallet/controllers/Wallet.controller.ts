@@ -14,6 +14,7 @@ export default class WalletController {
   @Authorized()
   @Post('/')
   async create(@Body() body, @CurrentUser() user) {
+    console.log(user);
     const createdWallet = await walletRepository.create(body, user);
     return createdWallet;
   }

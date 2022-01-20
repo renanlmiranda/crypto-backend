@@ -50,14 +50,16 @@ model Transactions {
   id Int @id @default(autoincrement())
   name String
   abbreviation String
-  quantity Int
+  quantity Float
   price Decimal @db.Money
+  fees Decimal? @db.Money
+  created DateTime @default(now())
 
-  type_id Int
-  type Types @relation(fields: [type_id], references: [id])
+  typeId Int @map("type_id")
+  type Types @relation(fields: [typeId], references: [id])
 
-  wallet_id Int
-  wallet Wallets @relation(fields: [wallet_id], references: [id])
+  walletId Int @map("wallet_id")
+  wallet Wallets @relation(fields: [walletId], references: [id])
   @@map("transactions")
 }
 
