@@ -21,8 +21,8 @@ Criptos:
   Wallet:
     ✔ Criação de carteira @done (1/14/2022, 10:51:13 PM)
     ☐ Deletar carteira com as transações
-    ☐ Criar schema de transações
-    ☐ Adicionar transação
+    ✔ Criar schema de transações @done (1/19/2022, 10:49:46 PM)
+    ✔ Adicionar transação @done (1/19/2022, 10:49:41 PM)
     ☐ Atualizar transação
     ☐ Deletar transação
     ☐ Listar ativos com lucro ou prejuizo total
