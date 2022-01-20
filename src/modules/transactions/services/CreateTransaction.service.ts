@@ -2,14 +2,14 @@
 import { BadRequestError } from 'routing-controllers';
 import { injectable, inject } from 'tsyringe';
 import { iCreatedResponse } from '../../../DTO/reponses.dto';
-import { iCryptoRepository } from '../repository/iCrypto.repository';
-import { iBodyToCreateTransactions } from '../types/crypto.types';
+import { iTransactionsRepository } from '../repository/iTransactions.repository';
+import { iBodyToCreateTransactions } from '../types/Transactions.types';
 
 @injectable()
 export class CreateTransactionService {
   constructor(
-    @inject('CryptoRepository')
-    private cryptoRepository: iCryptoRepository,
+    @inject('TransactionsRepository')
+    private transactionsRepository: iTransactionsRepository,
   ) {}
 
   async execute({
@@ -29,7 +29,7 @@ export class CreateTransactionService {
         throw new BadRequestError('Invalid type!');
       }
 
-      await this.cryptoRepository.create({
+      await this.transactionsRepository.create({
         name,
         abbreviation,
         quantity,
