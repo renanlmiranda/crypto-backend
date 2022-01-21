@@ -15,6 +15,10 @@ export class WalletRepository implements iWalletRepository {
     });
   }
 
+  async findAll(userId: number) {
+    return prisma.wallets.findMany({ where: { user_id: userId } });
+  }
+
   async deleteMany(userId: number) {
     await prisma.wallets.deleteMany({
       where: { user_id: userId },

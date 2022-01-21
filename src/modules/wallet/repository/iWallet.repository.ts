@@ -8,6 +8,7 @@ export interface iWalletBody {
 }
 export interface iWalletRepository {
   create(body: iWalletBody, user: User): Promise<Wallets>;
+  findAll(userId: number): Promise<Wallets[]>;
   deleteMany(userId: number): Promise<boolean>;
   delete(id: number): Promise<iDeletedReponse>;
 }
