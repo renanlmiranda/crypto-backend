@@ -1,9 +1,11 @@
+import { Users } from '@prisma/client';
 import {
   Authorized,
   Body,
   Controller,
   CurrentUser,
   Delete,
+  Get,
   Param,
   Post,
 } from 'routing-controllers';
@@ -18,6 +20,13 @@ export default class WalletController {
   async create(@Body() body, @CurrentUser() user) {
     const createdWallet = await walletRepository.create(body, user);
     return createdWallet;
+  }
+
+  @Authorized()
+  @Get('/')
+  async findAll(@CurrentUser() user: Users) {
+    const findAll = await walletRepository.findAll(user.id);
+    return findAll;
   }
 
   @Authorized('/wallets/:id')
