@@ -14,14 +14,12 @@ const cryptoRepository = new CryptoRepository();
 
 @Controller('/cryptos')
 export default class CryptoController {
-  @Authorized()
   @Get('/')
   async findAll(@QueryParams() query) {
     const data = await cryptoRepository.findAll(query);
     return data;
   }
 
-  @Authorized()
   @Get('/:id')
   async findOne(@Param('id') id: string) {
     const findOneService = container.resolve(FindOneCryptoService);

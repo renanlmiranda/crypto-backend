@@ -6,7 +6,6 @@ import { CreateTransactionService } from '../services/CreateTransaction.service'
 
 @Controller('/cryptos')
 export default class TransactionsController {
-  @Authorized()
   @Post('/')
   async create(@Body() body: iBodyToCreateTransactions) {
     const createTransactionService = container.resolve(

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { Transactions } from '@prisma/client';
+import { Prisma, Transactions } from '@prisma/client';
 import { iBodyToCreateTransactions } from '../types/Transactions.types';
 import { prisma } from '../../../database/prisma';
 
@@ -14,7 +14,15 @@ export class TransactionsRepository {
     walletId,
   }: iBodyToCreateTransactions): Promise<Transactions> {
     return prisma.transactions.create({
-      data: { name, abbreviation, quantity, price, fees, typeId, walletId },
+      data: {
+        name,
+        abbreviation,
+        quantity,
+        price,
+        fees,
+        typeId,
+        walletId,
+      },
     });
   }
 }

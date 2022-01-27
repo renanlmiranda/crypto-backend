@@ -51,8 +51,8 @@ model Transactions {
   name String
   abbreviation String
   quantity Float
-  price Decimal @db.Money
-  fees Decimal? @db.Money
+  price Float
+  fees Float?
   created DateTime @default(now())
 
   typeId Int @map("type_id")

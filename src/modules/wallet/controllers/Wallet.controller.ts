@@ -22,11 +22,16 @@ export default class WalletController {
     return createdWallet;
   }
 
-  @Authorized()
+  // Colocar authorized
   @Get('/')
   async findAll(@CurrentUser() user: Users) {
     const findAll = await walletRepository.findAll(user.id);
     return findAll;
+  }
+
+  @Get('/:id')
+  async findOne(@Param('id') id: number) {
+    return walletRepository.findOne(id);
   }
 
   @Authorized('/wallets/:id')
