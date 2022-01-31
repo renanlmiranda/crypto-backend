@@ -22,10 +22,14 @@ export class WalletRepository implements iWalletRepository {
   }
 
   async findOne(id: number) {
-    // return prisma.wallets.findUnique({
-    //   where: { id },
-    //   include: { transactions: true },
-    // });
+    return prisma.$queryRaw`
+    SELECT
+      t."name", sum(t.quantity) as total_quantity, avg(t.price) as media, sum(t.fees) as total_fees
+    FROM transactions t
+	  INNER JOIN wallets w on w.id = t.wallet_id
+    WHERE t.wallet_id = ${id}
+    GROUP BY t."name"
+    `;
   }
 
   async deleteMany(userId: number) {
